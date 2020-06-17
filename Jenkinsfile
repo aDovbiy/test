@@ -1,21 +1,11 @@
 node() {
-    stage('Checkout') {
-        //git "https://github.com/maltez/test.git"
-         deleteDir() // Workdir cleanup
-        def scmVars = checkout scm
+    stage ("OUT"){
+    deleteDir()
+    git  "https://github.com/aDovbiy/test.git"
     }
-
-    stage('Build') {
-        sh "echo Building"
-        sh "echo 'Change Jenkinsfile'"
-        sh "docker build -t image/test ."
+    stage ("BUILD"){
+    sh "echo Building ${BUILD_ID} build id"
+    sh "echo Testing on ${NODE_NAME}"
+    sh "echo Pulling on repo"
     }
-
-    stage('Tests') {
-        sh "echo Testing"
-    }
-
-    stage('Push image') {
-        sh "echo Pushing"
-    }
-}
+}  
